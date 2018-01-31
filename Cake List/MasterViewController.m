@@ -8,6 +8,7 @@
 
 #import "MasterViewController.h"
 #import "CakeCell.h"
+#import "Constants.h"
 
 @interface MasterViewController ()
 @property (strong, nonatomic) NSArray *objects;
@@ -31,18 +32,31 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CakeCell *cell = (CakeCell*)[tableView dequeueReusableCellWithIdentifier:@"CakeCell"];
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CakeCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
     
     NSDictionary *object = self.objects[indexPath.row];
     cell.titleLabel.text = object[@"title"];
     cell.descriptionLabel.text = object[@"desc"];
- 
     
     NSURL *aURL = [NSURL URLWithString:object[@"image"]];
-    NSData *data = [NSData dataWithContentsOfURL:aURL];
-    UIImage *image = [UIImage imageWithData:data];
-    [cell.cakeImageView setImage:image];
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:aURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (data) {
+            CGSize size = CGSizeMake(65, 65);
+            UIImage *image = [UIImage imageWithData:data];
+            image = [self imageWithImage:image convertToSize:size];
+            if (image) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (cell)
+                        [cell.cakeImageView setImage:image];
+                });
+            }
+        }
+    }];
+    [task resume];
     
     return cell;
 }
@@ -53,7 +67,7 @@
 
 - (void)getData{
     
-    NSURL *url = [NSURL URLWithString:@"https://gist.githubusercontent.com/hart88/198f29ec5114a3ec3460/raw/8dd19a88f9b8d24c23d9960f3300d0c917a4f07c/cake.json"];
+    NSURL *url = [NSURL URLWithString:API_URL];
     
     NSData *data = [NSData dataWithContentsOfURL:url];
     
@@ -69,5 +83,14 @@
     }
     
 }
+
+- (UIImage *)imageWithImage:(UIImage *)image convertToSize:(CGSize)size {
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return destImage;
+}
+
 
 @end
