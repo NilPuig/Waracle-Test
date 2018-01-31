@@ -8,7 +8,8 @@
 
 #import "MasterViewController.h"
 #import "CakeCell.h"
-#import "Constants.h"
+#import "Global.h"
+#import "UIImage_Helper.h"
 
 @interface MasterViewController ()
 @property (strong, nonatomic) NSArray *objects;
@@ -47,7 +48,7 @@
         if (data) {
             CGSize size = CGSizeMake(65, 65);
             UIImage *image = [UIImage imageWithData:data];
-            image = [self imageWithImage:image convertToSize:size];
+            image = [UIImage_Helper imageWithImage:image convertToSize:size];
             if (image) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (cell)
@@ -84,13 +85,6 @@
     
 }
 
-- (UIImage *)imageWithImage:(UIImage *)image convertToSize:(CGSize)size {
-    UIGraphicsBeginImageContext(size);
-    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return destImage;
-}
 
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7739798820226FA700834FB7 /* UIImage_Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7739798720226FA700834FB7 /* UIImage_Helper.m */; };
 		DBF17A171B0B648F004E6311 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF17A161B0B648F004E6311 /* main.m */; };
 		DBF17A1A1B0B648F004E6311 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF17A191B0B648F004E6311 /* AppDelegate.m */; };
 		DBF17A1D1B0B648F004E6311 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF17A1C1B0B648F004E6311 /* MasterViewController.m */; };
@@ -28,7 +29,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7739798420226D4800834FB7 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		7739798420226D4800834FB7 /* Global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
+		7739798620226FA700834FB7 /* UIImage_Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIImage_Helper.h; sourceTree = "<group>"; };
+		7739798720226FA700834FB7 /* UIImage_Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIImage_Helper.m; sourceTree = "<group>"; };
 		DBF17A111B0B648F004E6311 /* Cake List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cake List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF17A151B0B648F004E6311 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBF17A161B0B648F004E6311 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -64,11 +67,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7739798320226D0800834FB7 /* Model */ = {
+		7739798320226D0800834FB7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = Model;
+			name = Models;
+			sourceTree = "<group>";
+		};
+		7739798520226F5400834FB7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				7739798620226FA700834FB7 /* UIImage_Helper.h */,
+				7739798720226FA700834FB7 /* UIImage_Helper.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		DBF17A081B0B648F004E6311 = {
@@ -94,10 +106,11 @@
 			children = (
 				DBF17A181B0B648F004E6311 /* AppDelegate.h */,
 				DBF17A191B0B648F004E6311 /* AppDelegate.m */,
-				7739798420226D4800834FB7 /* Constants.h */,
-				7739798320226D0800834FB7 /* Model */,
+				7739798420226D4800834FB7 /* Global.h */,
+				7739798320226D0800834FB7 /* Models */,
 				DBF17A401B0B8EE3004E6311 /* View Controllers */,
 				DBF17A411B0B8EED004E6311 /* Cells */,
+				7739798520226F5400834FB7 /* Helpers */,
 				DBF17A211B0B648F004E6311 /* Main.storyboard */,
 				DBF17A241B0B648F004E6311 /* Images.xcassets */,
 				DBF17A261B0B648F004E6311 /* LaunchScreen.xib */,
@@ -254,6 +267,7 @@
 				DBF17A1A1B0B648F004E6311 /* AppDelegate.m in Sources */,
 				DBF17A3F1B0B8E16004E6311 /* CakeCell.m in Sources */,
 				DBF17A1D1B0B648F004E6311 /* MasterViewController.m in Sources */,
+				7739798820226FA700834FB7 /* UIImage_Helper.m in Sources */,
 				DBF17A171B0B648F004E6311 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
